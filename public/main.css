@@ -1,0 +1,17 @@
+table{
+  width: 980px;
+  border-collapse: collapse;
+  margin: auto;
+  text-align: center;
+}
+
+table tr:nth-child(odd) >td{
+  background-color: #0cf;
+}
+
+
+.operate{
+  margin: auto;
+  position: relative;
+  width: 100px;
+}

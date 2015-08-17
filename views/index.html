@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="/main.css">
+  <script src="./jquery/dist/jquery.js"></script>
+  <script src="./sort.js"></script>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th data-tag='id' data-flag=1>学号</th>
+        <th data-tag='name' data-flag=1>姓名</th>
+        <th data-tag='chinese' data-flag=1>语文</th>
+        <th data-tag='math' data-flag=1>数学</th>
+        <th data-tag='english' data-flag=1>英语</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each scores}}
+      <tr id={{id}}>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{chinese}}</td>
+        <td>{{math}}</td>
+        <td>{{english}}</td>
+        <td class='delete' data-id={{id}}>删除</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+<div class="operate">
+  <form >
+    <input type="button" id="add" value="添加">
+    <input type="button" id="update" value="修改">
+  </form>
+</div>
+
+</body>
+
+</html>
