@@ -13,7 +13,6 @@
   <table>
     <thead>
       <tr>
-        <th data-tag='id' data-flag=1>学号</th>
         <th data-tag='name' data-flag=1>姓名</th>
         <th data-tag='chinese' data-flag=1>语文</th>
         <th data-tag='math' data-flag=1>数学</th>
@@ -24,7 +23,6 @@
     <tbody>
       {{#each scores}}
       <tr id={{id}}>
-        <td>{{id}}</td>
         <td>{{name}}</td>
         <td>{{chinese}}</td>
         <td>{{math}}</td>
@@ -32,15 +30,29 @@
         <td class='delete' data-id={{id}}>删除</td>
       </tr>
       {{/each}}
-    </tbody>
-  </table>
-<div class="operate">
-  <form >
-    <input type="button" id="add" value="添加">
-    <input type="button" id="update" value="修改">
-  </form>
-</div>
 
+    </tbody>
+    <tfoot>
+      <tr class="add-info">
+        <td>
+          <input class="name" type="text">
+        </td>
+        <td>
+          <input class="chinese" type="text">
+        </td>
+        <td>
+          <input class="math" type="text">
+        </td>
+        <td>
+          <input class="english" type="text">
+        </td>
+        <td>
+          <input type="button" class='add' value="添加">
+        </td>
+      </tr>
+    </tfoot>
+
+  </table>
 </body>
 
 </html>

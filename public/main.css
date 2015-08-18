@@ -4,9 +4,17 @@ table{
   margin: auto;
   text-align: center;
 }
+table th{
+  background-color: #D9EDF7;
+}
 
-table tr:nth-child(odd) >td{
-  background-color: #0cf;
+tfoot .add-info{
+    background-color: #D9EDF7;
+}
+
+
+tbody tr:nth-child(odd) >td{
+  background-color: #FCF8E3;
 }
 
 

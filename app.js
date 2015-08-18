@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
-var fs = require('fs');
+var bodyParser = require('body-parser');
 var parseScores = require('./parse_scores.js');
 app.use(express.static('public'));
 app.use(express.static('bower_components'));
@@ -9,6 +9,11 @@ app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 var mysql = require('mysql');
 var connection;
+
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.all('*', function(res, req, next) {
   connection = mysql.createConnection({
@@ -34,12 +39,11 @@ app.get('/', function(req, res) {
       });
       connection.end();
     });
-
 });
 
 
 app.delete('/delete', function(req, res) {
-  var id =req.query.id;
+  var id = req.query.id;
   var sql = 'delete from scores where student_id =' + id;
   connection.query(sql,
     function(err, rows, fields) {
@@ -47,6 +51,22 @@ app.delete('/delete', function(req, res) {
       res.send('true');
       connection.end();
     });
+});
+
+
+
+app.post('/add', function(req, res) {
+  var sql = 'insert into students(student_name) values("' + req.body.name + '")';
+  connection.query(sql, function(err, rows, fields) {
+    if (err) throw err;
+    var id = rows.insertId;
+    var sql2 = 'insert into scores(student_id,course_id,score) values(' + id + ',1,' + req.body.chinese + '),(' + id + ',2,' + req.body.math + '),(' + id + ',3,' + req.body.english + ')';
+    connection.query(sql2, function(err, rows, fields) {
+      if (err) throw err;
+      res.send({id:id});
+      connection.end();
+    });
+  });
 });
 
 
@@ -63,7 +83,6 @@ app.get('/scores', function(req, res) {
       res.send(rows);
       connection.end();
     });
-
 });
 
 app.listen(3000);
